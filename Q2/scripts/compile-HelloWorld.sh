@@ -15,6 +15,9 @@ echo "Compiling HelloWorld.circom..."
 
 # compile circuit
 
+# r1cs: generates `circuit.r1cs` (the r1cs constraint system of the circuit in binary format)
+# wasm: generates `circuit.wasm` (the wam code to generate the witness)
+# sym:  generates `circuit.sym`  (a symbols file required for debugging and printing the constraint system in an annotated mode).
 circom HelloWorld.circom --r1cs --wasm --sym -o HelloWorld
 snarkjs r1cs info HelloWorld/HelloWorld.r1cs
 
