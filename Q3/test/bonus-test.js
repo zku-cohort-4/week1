@@ -42,22 +42,32 @@ describe("SystemOfEquations verifier test", function () {
 
     it("Should return true for correct proof", async function () {
         //[assignment] Add comments to explain what each line is doing
+
+        // set groth16 proof object and outputs of calculation results
+        // negative int inputs need to be representing the number -n as "p-n" which represent Fr.e(-1) in F1Field
         const { proof, publicSignals } = await groth16.fullProve({
             "x": ["15","17","19"],
-            "A": [["1","1","1"],["1","2","3"],["2","-1","1"]],
+            "A": [["1","1","1"],["1","2","3"],["2",Fr.e(-1),"1"]],
             "b": ["51", "106", "32"]
         },
             "contracts/bonus/SystemOfEquations/SystemOfEquations_js/SystemOfEquations.wasm","contracts/bonus/SystemOfEquations/circuit_final.zkey");
 
+        // get calldata
         const calldata = await groth16.exportSolidityCallData(proof, publicSignals);
-    
+
+        // get just the integer data from the calldata to create an array
         const argv = calldata.replace(/["[\]\s]/g, "").split(',').map(x => BigInt(x).toString());
-    
+
+        // set the value of argv
         const a = [argv[0], argv[1]];
+        // set the value of argv
         const b = [[argv[2], argv[3]], [argv[4], argv[5]]];
+        // set the value of argv
         const c = [argv[6], argv[7]];
+        // set the public params from argv
         const Input = argv.slice(8);
 
+        // verify the proof with inputted values. must be true.
         expect(await verifier.verifyProof(a, b, c, Input)).to.be.true;
     });
     it("Should return false for invalid proof", async function () {
