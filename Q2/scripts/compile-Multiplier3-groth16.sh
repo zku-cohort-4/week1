@@ -26,3 +26,8 @@ snarkjs groth16 prove Multiplier3/circuit_final.zkey ../../witness.wtns ../../pr
 
 # Verify the proof
 snarkjs zkey verify Multiplier3/Multiplier3.r1cs powersOfTau28_hez_final_10.ptau Multiplier3/circuit_final.zkey
+
+# generate solidity contract
+snarkjs zkey export solidityverifier Multiplier3/circuit_final.zkey ../Multiplier3Verifier.sol
+
+cd ../..
