@@ -14,5 +14,8 @@
   },
   "scripts": {
     "test": ". scripts/bonus-compile.sh && node scripts/bonus-bump-solidity.js && npx hardhat test"
-  }
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
