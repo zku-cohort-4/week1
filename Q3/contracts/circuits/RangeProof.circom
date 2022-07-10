@@ -27,3 +27,8 @@ template RangeProof(n) {
 
     out <== condition;
 }
+
+template RangeProofLoop(n, x, y) {
+    signal input in;
+    
+}
