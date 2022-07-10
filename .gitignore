@@ -13,3 +13,5 @@ Q2/contracts/circuits/Multiplier3
 Q2/contracts/circuits/HelloWorld
 Q2/contracts/circuits/Multiplier3_plonk
 Q3/contracts/bonus/SystemOfEquations
+Q3/contracts/circuits/LessThan10
+Q3/contracts/circuits/RangeProof
