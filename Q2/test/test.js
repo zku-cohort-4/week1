@@ -33,7 +33,7 @@ describe("HelloWorld", function () {
 
     const witness = await circuit.calculateWitness(INPUT, true);
 
-    console.log(witness);
+    //console.log(witness);
 
     assert(Fr.eq(Fr.e(witness[0]), Fr.e(1)));
     assert(Fr.eq(Fr.e(witness[1]), Fr.e(6)));
@@ -48,7 +48,7 @@ describe("HelloWorld", function () {
       "contracts/circuits/HelloWorld/circuit_final.zkey"
     );
 
-    console.log("2x3 =", publicSignals[0]);
+    //console.log("2x3 =", publicSignals[0]);
 
     // This function is for generating the solidity compatable params
     // for the `HelloWorldVerifier.sol` contract.
@@ -62,7 +62,7 @@ describe("HelloWorld", function () {
       .split(",")
       .map((x) => BigInt(x).toString());
 
-    console.log("[HelloWorld argv]", argv);
+    //console.log("[HelloWorld argv]", argv);
 
     // Generating the pairing G1Point
     const a = [argv[0], argv[1]];
@@ -76,7 +76,7 @@ describe("HelloWorld", function () {
     // Cutting the last record in the argv to get the multiplication result
     const Input = argv.slice(8);
 
-    console.log("[HelloWorld Input]", Input);
+    //console.log("[HelloWorld Input]", Input);
 
     // Expected to be true if the proof if valid
     expect(await verifier.verifyProof(a, b, c, Input)).to.be.true;
@@ -116,7 +116,7 @@ describe("Multiplier3 with Groth16", function () {
 
     const witness = await circuit.calculateWitness(INPUT, true);
 
-    console.log(witness);
+    //console.log(witness);
 
     assert(Fr.eq(Fr.e(witness[0]), Fr.e(1)));
     assert(Fr.eq(Fr.e(witness[1]), Fr.e(24)));
@@ -130,22 +130,22 @@ describe("Multiplier3 with Groth16", function () {
       "contracts/circuits/Multiplier3/circuit_final.zkey"
     );
 
-    console.log("[Multiplier3 Groth16 proof]: ", proof);
-    console.log("[Multiplier3 Groth16 publicSignals]: ", publicSignals);
-    console.log(
-      "[Multiplier3 Groth16 publicSignals]: 2x3x4 = ",
-      publicSignals[0]
-    );
+    // console.log("[Multiplier3 Groth16 proof]: ", proof);
+    // console.log("[Multiplier3 Groth16 publicSignals]: ", publicSignals);
+    // console.log(
+    //   "[Multiplier3 Groth16 publicSignals]: 2x3x4 = ",
+    //   publicSignals[0]
+    // );
 
     const calldata = await groth16.exportSolidityCallData(proof, publicSignals);
-    console.log("[Multiplier3 Groth16 calldata]:", calldata);
+    //console.log("[Multiplier3 Groth16 calldata]:", calldata);
 
     const argv = calldata
       .replace(/["[\]\s]/g, "")
       .split(",")
       .map((x) => BigInt(x).toString());
 
-    console.log("[Multiplier3 Groth16 argv]", argv);
+    //console.log("[Multiplier3 Groth16 argv]", argv);
 
     const a = [argv[0], argv[1]];
     const b = [
@@ -155,7 +155,7 @@ describe("Multiplier3 with Groth16", function () {
     const c = [argv[6], argv[7]];
     const Input = argv.slice(8);
 
-    console.log("[HelloWorld Input]", Input);
+    //console.log("[HelloWorld Input]", Input);
 
     expect(await verifier.verifyProof(a, b, c, Input)).to.be.true;
   });

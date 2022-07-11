@@ -44,7 +44,7 @@ describe("SystemOfEquations verifier test", function () {
         //[assignment] Add comments to explain what each line is doing
         const { proof, publicSignals } = await groth16.fullProve({
             "x": ["15","17","19"],
-            "A": [["1","1","1"],["1","2","3"],["2","-1","1"]],
+            "A": [["1","1","1"],["1","2","3"],["2",Fr.e(-1),"1"]],
             "b": ["51", "106", "32"]
         },
             "contracts/bonus/SystemOfEquations/SystemOfEquations_js/SystemOfEquations.wasm","contracts/bonus/SystemOfEquations/circuit_final.zkey");

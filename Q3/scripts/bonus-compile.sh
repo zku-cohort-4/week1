@@ -15,10 +15,16 @@ echo "Compiling SystemOfEquations.circom..."
 
 # compile circuit
 
-circom SystemOfEquations.circom --r1cs --wasm --sym -o SystemOfEquations
+circom SystemOfEquations.circom  --verbose --r1cs --wasm --sym -o SystemOfEquations
 snarkjs r1cs info SystemOfEquations/SystemOfEquations.r1cs
 
-# Start a new zkey and make a contribution
+# Calculate the witness
+cd SystemOfEquations/SystemOfEquations_js
+node generate_witness.js SystemOfEquations.wasm ../../../../input_bonus.json ../../../../witness_bonus.wtns 
+
+# # Start a new zkey and make a contribution
+
+cd ../../
 
 snarkjs groth16 setup SystemOfEquations/SystemOfEquations.r1cs powersOfTau28_hez_final_10.ptau SystemOfEquations/circuit_0000.zkey
 snarkjs zkey contribute SystemOfEquations/circuit_0000.zkey SystemOfEquations/circuit_final.zkey --name="1st Contributor Name" -v -e="random text"
