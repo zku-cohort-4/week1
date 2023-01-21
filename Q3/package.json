@@ -4,13 +4,13 @@
     "@nomiclabs/hardhat-ethers": "^2.0.5",
     "@nomiclabs/hardhat-waffle": "^2.0.3",
     "chai": "^4.3.6",
-    "circom_tester": "^0.0.14",
+    "circom_tester": "^0.0.19",
     "circomlib": "^2.0.3",
     "circomlib-matrix": "^1.0.0",
     "ethereum-waffle": "^3.4.4",
     "ethers": "^5.6.4",
-    "hardhat": "^2.9.3",
-    "snarkjs": "^0.4.22"
+    "hardhat": "^2.12.6",
+    "snarkjs": "^0.5.0"
   },
   "scripts": {
     "test": ". scripts/bonus-compile.sh && node scripts/bonus-bump-solidity.js && npx hardhat test"
